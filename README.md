@@ -1,2 +1,2 @@
 # Rust Decoded
-"**[The Book](https://doc.rust-lang.org/book/)**" from the `Rust` documentation decoded with concise explanations, exercises, and a focus on Web Development.
+"**[The Book](https://doc.rust-lang.org/book/)**" from the `Rust` documentation decoded with concise explanations of advanced **Systems Development** concepts, exercises, and a deep dive into **Web Development**.

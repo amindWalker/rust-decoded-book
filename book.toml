@@ -1,0 +1,6 @@
+[book]
+authors = ["Breno Rocha (amindWalker)"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Rust Decoded"
