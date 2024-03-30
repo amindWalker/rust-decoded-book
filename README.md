@@ -1,5 +1,10 @@
-# Rust Decoded
-"**[The Book](https://doc.rust-lang.org/book/)**" from the `Rust` documentation decoded with concise explanations of advanced **Systems Development** concepts. Includes many exercises and a deep dive into **Web Development**.
+![Rust-Decoded-Cover](https://github.com/amindWalker/rust-decoded-book/assets/66398400/7ca9d4d5-3f4e-46f2-9a8d-bf1e6a40c9bf)
+
+<div align='center'>
+  
+  "**[The Book](https://doc.rust-lang.org/book/)**" from the `Rust` documentation decoded with concise explanations of advanced **Systems Development** concepts. Includes many exercises and a deep dive into **Web Development**.
+
+</div>
 
 # Part I: First Steps
 - [Introduction to Rust Programming](src/part_1/introduction.md)
