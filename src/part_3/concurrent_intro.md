@@ -1,5 +1,7 @@
 # Introduction to Concurrent Programming
 
+![Multithreading-Concurrency](https://github.com/amindWalker/rust-decoded-book/assets/66398400/b3e55bcc-7e9e-4fbc-9714-f2a1a39edbe5)
+
 Concurrency stands as a cornerstone of modern software development, enhancing performance and responsiveness by allowing programs to carry out multiple tasks concurrently. This chapter explores the complexities of concurrency management in Rust, equipping you with the knowledge to construct robust and efficient concurrent applications.
 
 ## Understanding Threads in Rust
