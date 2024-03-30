@@ -35,7 +35,6 @@
 # Part III: Understanding Operating Systems and Concurrent Programming (Multitasking)
 - [Introduction to Concurrent Programming](src/part_3/concurrent_intro.md)
 - [Fundamentals of System Threads](src/part_3/system_threads.md)
-- [Creating and Managing Threads](src/part_3/managing_threads.md)
 
 ## Thread Communication with CPU Synchronization
 - [Understanding Closures and Move Synchronization](src/part_3/thread_sync.md)
