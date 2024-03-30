@@ -15,7 +15,7 @@ What qualities define an exceptional programming language?
 2. **Comes with a Warranty:** Confidence in code integrity.
 4. **Practicality:** Solutions that work where they're needed.
 3. **Elegance in Code:** Crafting solutions with beauty and precision without compromising performance.
-1. **Close to the Metal:** Bridging the gap between high-level languages and Assembly.
+1. **Close to the Metal:** Bridging the gap between high-level languages and C/C++.
 
 # Comes with a Warranty
 - Lifetimes tracked by the type system eliminate null pointer exceptions.
@@ -23,7 +23,7 @@ What qualities define an exceptional programming language?
 - Robust type system mitigates common errors.
 - Programs safeguard against system corruption by default (unless overridden by explicit use of `unsafe`).
 
-# Close to the Metal (Low-level Performance Comparable to Assembly)
+# Close to the Metal (Low-level Performance Comparable to C/C++)
 - Leveraging LLVM for cutting-edge code generation.
 - Suitable for embedded systems, OS development, and high-demand web applications.
 - No intrusive garbage collectors hindering execution.
