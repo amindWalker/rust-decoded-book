@@ -21,7 +21,7 @@ fn main() {
 
 The program hangs indefinitely as it tries to obtain the Mutex twice within the same thread, resulting in a deadlock.
 
-## Try Locking
+## Avoiding Deadlocks with Simple Error Handling
 
 To prevent deadlocks, consider using `try_lock` instead of `lock`:
 
@@ -93,7 +93,7 @@ fn main() {
 }
 ```
 
-In this example, the Mutex becomes poisoned after the thread crashes while holding the lock, leading to subsequent lock attempts failing.
+In this example, the Mutex becomes **poisoned** after the thread crashes while holding the lock, leading to subsequent lock attempts failing.
 
 ## Recovering from Poisoning
 
@@ -167,7 +167,9 @@ This example demonstrates how to implement timed locking with `RwLock`, ensuring
 
 # Deadlock Avoidance
 
-Deadlock avoidance is critical in concurrent programming, and `RwLock` provides tools to achieve it:
+Deadlock avoidance is critical in concurrent programming, and `RwLock` provides tools to achieve it.
+
+This example demonstrates a more complex handling of the poisoned mutexes:
 
 ```rust
 use std::sync::{RwLock, Arc};
@@ -197,11 +199,31 @@ fn main() {
 }
 ```
 
-By ensuring a consistent order of lock acquisition and using try_read and try_write methods, this code effectively avoids deadlocks in concurrent scenarios.
+## Overview:
 
-# Implementing Resource Pooling
+- A Mutex-protected data structure wrapped in an Arc is created for shared ownership among threads.
+- Threads are spawned to manipulate the mutex-protected data, each thread obtaining its own clone of the Arc and Mutex.
+- Mutex locking ensures exclusive access to the data, with counter incrementation and panic handling implemented inside each thread.
+- Once all threads complete their tasks, the final counter value is printed after attempting to lock the mutex again.
+- In case of a poisoned mutex, the data is recovered and appropriately handled.
 
-Resource pooling is efficiently managed using `RwLock` to share a limited set of resources among multiple threads:
+## Output:
+
+```plaintext
+Thread reached 3, stopping.
+Thread reached 3, stopping.
+Final Counter Value: 3
+```
+
+This illustrates the behavior of a program when dealing with both normal and poisoned states of the mutex.
+
+By ensuring a consistent order of lock acquisition this code effectively avoids deadlocks in concurrent scenarios.
+
+# Implementing Resource Pooling with `RwLock`
+
+Resource pooling in concurrent programming efficiently manages and shares a limited set of resources among multiple threads. This Rust example demonstrates how to implement resource pooling using `RwLock`, ensuring safe and synchronized access.
+
+## Code Example
 
 ```rust
 use std::sync::{RwLock, Arc};
@@ -216,18 +238,19 @@ fn main() {
     let resources: Vec<Arc<RwLock<Resource>>> = (0..NUM_RESOURCES)
         .map(|id| Arc::new(RwLock::new(Resource { id })))
         .collect();
+
     let mut handles = vec![];
 
     for i in 0..10 {
         let resources_clone: Vec<Arc<RwLock<Resource>>> = resources.clone();
+
         let handle = thread::spawn(move || {
             let idx = (i % NUM_RESOURCES) as usize;
             let resource = &resources_clone[idx];
             let data_guard = resource.read().unwrap();
             println!("Thread {} accessed Resource {}", i, data_guard.id);
-       
+        });
 
- });
         handles.push(handle);
     }
 
@@ -237,4 +260,10 @@ fn main() {
 }
 ```
 
-This code showcases how to implement resource pooling using `RwLock`, ensuring safe and synchronized access to shared resources across multiple threads. Each thread efficiently utilizes resources without risking data integrity or synchronization issues.
+## Explanation
+
+In this example, an array of resources is created, each represented by a `Resource` struct and wrapped in an `Arc<RwLock<Resource>>` to allow shared ownership across threads. The number of resources is defined by `NUM_RESOURCES`, and a loop initializes these resources with unique IDs.
+
+The program then spawns ten threads, and each thread attempts to access a resource from the pool. The use of `RwLock` ensures that multiple threads can read a resource concurrently without issues, but only one thread can hold a write lock for exclusive modification. Thus, the resource pool is effectively utilized by the threads, preventing data races and ensuring safe access.
+
+To distribute thread access evenly among the available resources, modulo arithmetic `(i % NUM_RESOURCES)` is used, preventing conflicts on the same resource by multiple threads. This ensures efficient resource sharing, with the program producing an output displaying the resource IDs accessed by each thread.
