@@ -163,7 +163,13 @@ fn main() {
 }
 ```
 
-This example demonstrates how to implement timed locking with `RwLock`, ensuring threads do not get stuck indefinitely while waiting for shared data access.
+## Here's a breakdown of how timed locking works:
+
+- **Setting a Timeout Duration**: Before attempting to acquire a lock, a timeout duration is defined. This duration represents the maximum amount of time a thread is willing to wait to acquire the lock.
+- **Acquiring the Lock with a Timeout**: The thread attempts to acquire the lock on the shared resource using methods like `try_lock` for `Mutex` or `try_read`/`try_write` for `RwLock`. These methods differ from their blocking counterparts (`lock`, `read`, `write`) in that they return immediately, either successfully acquiring the lock or indicating failure if the lock couldn't be obtained within the specified timeout.
+- **Checking Timeout**: After attempting to acquire the lock, the thread checks if the elapsed time has exceeded the timeout duration. If the timeout is reached and the lock acquisition failed, appropriate actions can be taken, such as retrying later, logging an error, or taking alternative paths in the code.
+- **Handling Lock Acquisition**: If the lock is successfully acquired within the timeout duration, the thread proceeds with the desired read or write operation on the shared resource. If the lock is not obtained due to a timeout, the thread can gracefully handle the situation based on the application's requirements.
+- **Release the Lock**: Once the thread finishes its operations on the shared resource, it releases the lock to allow other threads to access it.
 
 # Deadlock Avoidance
 
