@@ -54,7 +54,6 @@
 - [Sending Functions Across Threads](src/part_3/function_threads.md)
 
 # Advanced Thread Management
-- [Managing CPU/Core Affinity](src/part_3/core_affinity.md)
 - [Setting Thread Priorities](src/part_3/thread_priority.md)
 - [Building a Work Queue with Thread Pools](src/part_3/thread_pools.md)
 - [Simplifying Concurrent Workloads with Rayon](src/part_3/concurrent_rayon.md)
