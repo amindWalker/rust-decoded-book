@@ -1,4 +1,4 @@
-# Exploring Essential Rust Concepts
+# Exploring Essential Rust Concepts.
 Let's dive into the basics of Rust programming.
 
 ## Integer Types
@@ -354,3 +354,5 @@ fn main() {
     name = name + " World";
 }
 ```
+> [!TIP]
+> **If you want to learn more in-depth about Rust Types and how Rust manages memory take a look at: [Rust Memory Layout and Types](https://github.com/amindWalker/Rust-Layout-and-Types)**
