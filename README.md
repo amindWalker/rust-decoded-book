@@ -2,7 +2,7 @@
 
 <div align='center'>
   
-  "**[The Book](https://doc.rust-lang.org/book/)**" from the `Rust` documentation decoded with concise explanations of advanced **Systems Development** concepts. Includes many exercises and a deep dive into **Web Development**.
+  "**[The Book](https://doc.rust-lang.org/book/)**" from the `Rust` documentation decoded with concise explanations of advanced **Systems Development** concepts. Updated to Rust 2024 Edition and includes many exercises with a deep dive into **Web Development and WebAssembly**.
 
 </div>
 
